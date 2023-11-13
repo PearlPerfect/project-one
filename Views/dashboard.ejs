@@ -1,0 +1,94 @@
+<%- include ("./Partials/head.ejs") %>
+<%- include('./Partials/dashboardNav.ejs')%>
+<div class="sidebar">
+        
+</div>
+
+       <div class="dashboardMaincotent">
+<div class="post">
+    <% posts.forEach(post => {%>
+        <div class="eachPost">
+            <div class="top">
+                <div class="author">
+                    <div class="profilePix">
+                        <img src="/pictures/<%= post.user?.profile %>" alt="profile Picture">
+                    </div>
+                    <div class="publication">
+                        <h3><%= post.user?.fullname %></h3>
+                     
+                            <% var day = new Date(post.updatedAt)%>
+                            <% let getDateOfTheMonth = day.getDate()%>
+                            <% var getFullYear = day.getFullYear()%>
+                           <% let month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "Novermber", "December"]  %>
+                           <% var time = day.getHours() + ":" + day.getMinutes() %>
+                  
+                    <div class="pub">
+                        <h4 class="date"><%= `${getDateOfTheMonth} ${month[day.getMonth()]} ${ getFullYear} ${time}` %></h4>
+
+                </div>
+                </div>
+            </div>
+            
+                <div class="Optionlinks">
+                        <div class="Optionlinks">
+                            <a href="/edit/<%=post._id%>" class="updateBtn edit">Edit</a>
+                            <form action="/delete/<%=post._id%>" method="post"  class="updateBtn">
+                                <input type="submit" value="Delete" class="updateBtn">
+                            </form>
+                          
+                        </div>
+                    </div>
+
+<!-- 
+            <div class='bx bx-dots-vertical-rounded' id="myButton"></div>
+            <div id="myPopup" class="popup">
+                <div class="popup-content">
+
+                    <div class="Optionlinks">
+                        <div class="Optionlinks">
+                            <form action="/edit/<%=post._id%>" method="get"  class="updateBtn">
+                                <input type="submit" value="Edit" class="updateBtn"  class="updateBtn">
+                            </form>
+                            <form action="/delete/<%=post._id%>" method="post"  class="updateBtn">
+                                <input type="submit" value="Delete" class="updateBtn">
+                            </form>
+                          
+                        </div>
+                    </div>
+                    <div class='bx bx-x' id="closePopup">
+                    </div>
+                </div>
+            </div> -->
+
+            
+        </div>
+        
+
+        <div class="posts">
+            <h2 class="postTitle"><%= post.title %></h2> 
+            <p class="description"><%= post.body %></p>
+
+        </div>
+        <div class="Dash_comment">
+            <div class="rightside">
+            <img src="/public/Images/comment.png" alt="Icon" >
+            <p id="comment">13 replies</p>
+            </div>
+            <div class="leftside">
+                <a href="<%=post.id%>">View replies
+                    <img src="/public/Images/chevron_right.png" alt="Icon" class="chevron_right">
+                </a> 
+    
+            </div>
+        </div>
+  
+    </div>
+
+
+    <%})%>
+    <a href="/create" class="btn">Create Post</a>
+</div>
+
+</div>
+
+<%- include ('./Partials/footer.ejs') %>

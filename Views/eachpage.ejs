@@ -1,0 +1,89 @@
+<%-include ('./Partials/head.ejs')%>
+<%-include ('./Partials/dashboardNav.ejs')%>
+
+
+<div class="sidebar">
+</div>
+<div class="dashboardMaincotent">
+    <div class="singlepost">
+        <div class="eachPage">
+            <div class="top">
+            <div class="author">
+                <div class="profilePix">
+                    <img src="/pictures/<%= posts.user?.profile %>" alt="profile Picture">
+                </div>
+                <div class="publication">
+                    <h3><%= posts.user?.fullname %></h3>
+                    <% var day = new Date(posts.updatedAt)%>
+                    <% let getDateOfTheMonth = day.getDate()%>
+                    <% var getFullYear = day.getFullYear()%>
+                    <% var time = day.getHours() + ":" + day.getMinutes() %>
+
+                   <% let month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "Novermber", "December"]  %>
+
+          
+            <div class="pub">
+                <h4 class="date"><%= `${getDateOfTheMonth} ${month[day.getMonth()]} ${ getFullYear}  ${time}` %></h4>
+
+        </div>
+                <div class="pub">
+  
+            </div>
+            </div>
+            </div>
+        </div>
+            <div class="posts">
+                <h2><%= posts.title %></h2>
+                <p class="description"><%= posts.body %></p>
+            </div>
+
+            <a href='/comment/<%=posts.id%>'>Add Comment</a>
+
+<!-- 
+    <form action="/edit/<%=posts._id%>" method="get" class="btn">
+        <input type="submit" value="Update" class="updateBtn">
+    </form> -->
+    <!-- <div class="Update">
+    <form action="/delete/<%=posts._id%>" method="post" class="btn">
+        <input type="submit" value="Delete" class="updateBtn">
+    </form>
+    <form action="/edit/<%=posts._id%>" method="get" class="btn">
+        <input type="submit" value="Update" class="updateBtn">
+    </form>
+</div> -->
+        </div>
+</div>
+<h2 class="comment_h2">Comments</h2>
+<div class="comment">
+    <% comments.forEach(comment => {%>
+        <div class="eachcomment">
+            <div class="comments">
+        
+                <div class="user">
+                    <img src="/pictures/<%= comment.user?.profile %>" alt="profile Picture">
+                    <h2><%=comment.user.fullname %></h2>
+                </div>
+                <div class="bottom">
+                    <p class="userComment"><%=comment.comment %></p>
+                    <% var day = new Date(comment.updatedAt)%>
+                    <% let getDateOfTheMonth = day.getDate()%>
+                    <% var getFullYear = day.getFullYear()%>
+                    <% var time = day.getHours() + ":" + day.getMinutes() %>
+                   <% let month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "Novermber", "December"]  %>
+                    <p class="date"><%= `${getDateOfTheMonth} ${month[day.getMonth()]} ${ getFullYear} ${time}` %></p>
+                </div>
+                
+            </div>
+               
+
+        </div>
+       
+    <%})%>
+</div>
+</div>
+    <!-- <div class="comment">
+        <% comments.forEach(comment => {%>
+            <p><%=comment.comment %></p>
+        <%})%>
+    </div> -->
+<%-include ('./Partials/footer.ejs')%>

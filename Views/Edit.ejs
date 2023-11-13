@@ -1,0 +1,21 @@
+<%-include('./Partials/head.ejs')%>
+<div class="form login">
+    <!-- if(value === ' '){/create}else{%>
+        /edit/:id
+        }%> -->
+
+<form action="/edit/<%=post._id %>" method="POST" id="input-form">
+    <label for="UserName"> Title:</label>
+    <input type="text" name="title" placeholder="Enter Your Post Title" value="<%= post?.title %>" required>
+ 
+  
+
+    <label for="Email"> Post:</label>
+    <textarea name="body" id="PostContent" cols="30" rows="10" class="inputs" placeholder="type your post here.." required ><%= post?.body %></textarea>
+
+
+    <button type="submit" class="btn">Add post</button>
+</form>
+</div>
+
+<%-include('./Partials/footer.ejs') %>

@@ -1,0 +1,13 @@
+<%-include('./Partials/head.ejs')%>
+<div class="form login">
+
+<form action="/comment/<%=post._id%>" method="POST" id="input-form">
+  
+    <textarea name="body" id="PostContent" cols="30" rows="10" class="inputs" placeholder="type your Comment ..." required ></textarea>
+
+
+    <button type="submit" class="btn">Comment</button>
+</form>
+</div>
+
+<%-include('./Partials/footer.ejs') %>

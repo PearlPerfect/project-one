@@ -1,0 +1,75 @@
+<%-include ('./Partials/head.ejs') %>
+<%-include ('./Partials/navbar.ejs')%>
+
+<main>
+<div class="form signup">
+    
+    <h1>Sign Up</h1>
+    <p><em>...fill the form below to Sign Up</em></p>
+
+    <% if (message.error){ %>
+        <div class="flashMsg">
+         <p> <%= message.error %> </p>
+        </div>
+    <% }  else if (message.success){ %>
+      <div class="flashSuc">
+       <p> <%= message.success %> </p>
+      </div>
+  <% } %>
+
+    <form action="/signup" method="POST" enctype="multipart/form-data" id="input-form">
+        <label for="FullName"> FULLNAME:</label>
+        <input type="text" name="fullname" placeholder="Enter Your name" value= <%=data?.fullname%>  >
+        <p class="error"><%= err?.fullname %></p>
+ 
+      
+        <label for="UserName"> USERNAME:</label>
+        <input type="text" name="username" placeholder="Choose Your Username" value= <%=data?.username%> >
+        <p class="error"><%= err?.username %></p>
+      
+      
+        <label for="Email"> EMAIL:</label>
+        <input type="email" name="email" placeholder="Enter Your Email" value= <%=data?.email%>  >
+        <p class="error" ><%= err?.email %></p>
+    
+     
+
+        <div class="password-container">
+            <label for="Password"> PASSWORD:</label>
+            <input type="password" name="password" placeholder="Enter Your Password" id="password" value= <%=data?.password%>  > 
+            <div class="fa-solid fa-eye"  id="showPassword"></div>
+            <p class="error"><%= err?.password  %></p>
+      </div>
+
+      <label for="roles">Roles:</label>
+      <select name="roles" id="role">
+        <option value="">Choose your role...</option>
+        <option value= user >User</option>
+        <option value= "admin" >Admin</option>
+        <!-- <p class="error"><%= err?.roles  %></p> -->
+      </select>
+
+      <label for="profile">Profile:</label>
+      <input type="file" name="profile" id="profile">
+      <!-- <div class="flexed">  
+        <p class="error" style = "color: red;"><%= err?.roles  %></p>
+        <div class="admin">
+            <label for="Admin">Admin:</label>    
+            <input type="" name="roles" id="roles" value="admin">
+        </div>
+        <div class="user">
+            <label for="Admin">User:</label>   
+          <input type="checkbox" name="roles" id="roles" value="user">
+        </div>
+    </div> -->
+
+        <button type="submit" class="btn">Sign up</button>
+    </form>
+
+    <div>
+        <p class="options">Already have an account? <a href="/login" > Log in</a></p>
+    </div>
+</div>  
+</main>
+
+<%- include ('./Partials/footer.ejs') %>

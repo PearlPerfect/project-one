@@ -1,0 +1,49 @@
+<%-include ('./Partials/head.ejs') %>
+<%-include ('./Partials/navbar.ejs')%>
+<main>
+    <div class="form login">
+        
+        <h1>Login</h1>
+        <p><em>...fill the form below to Login</em></p>
+        <% if (message.error){ %>
+            <div class="flashMsg">
+             <p> <%= message.error %> </p>
+            </div>
+        <% }  else if (message.success){ %>
+          <div class="flashSuc">
+           <p> <%= message.success %> </p>
+          </div>
+      <% } %>
+    
+        <form action="/login" method="POST" id="input-form">
+            <label for="UserName"> USERNAME:</label>
+            <input type="text" name="username" placeholder="Enter Your Username" >
+            <p class="error" ><%= err?.username %></p>
+          
+        
+            <label for="Email"> EMAIL:</label>
+            <input type="email" name="email" placeholder="Enter Your Email" >
+            <p class="error" ><%= err?.email %></p>
+        
+           
+    
+            <div class="password-container">
+                <label for="Password"> PASSWORD:</label>
+                <input type="password" name="password" placeholder="Enter Your Password" id="password" > 
+                <div class="fa-solid fa-eye"  id="showPassword"></div>
+                <p class="error" ><%= err?.password  %></p>
+        
+           
+          </div>
+          <br>
+  
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <br>
+    
+        <div>
+            <p class="options">Already have an account? <a href="/signup" > Signup</a></p>
+        </div>
+    </div>  
+    </main>
+<%- include ('./Partials/footer.ejs') %>
